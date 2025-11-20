@@ -1,0 +1,350 @@
+/* style.css */
+
+/* Animations */
+
+@keyframes movingBg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); } /* Reduced float distance */
+  100% { transform: translateY(0px); }
+}
+
+/* Base Styles */
+
+:root {
+  --primary-color: #4f46e5; /* Indigo */
+  --secondary-color: #1d4ed8; /* Blue */
+  --ai-color: #ec4899; /* Pink */
+  --web-color: #38bdf8; /* Sky Blue */
+  --text-color-light: #0f172a;
+  --text-color-dark: #e0e7ff;
+  --card-bg-light: rgba(255, 255, 255, 0.9);
+  --card-bg-dark: rgba(30, 27, 75, 0.8); /* Darker, transparent card background */
+  --border-light: rgba(148, 163, 184, 0.5);
+  --border-dark: rgba(15, 23, 42, 0.5);
+}
+
+body {
+  background: radial-gradient(circle at top, #e0f2fe, #e5e7eb, #e0e7ff);
+  background-size: 200% 200%;
+  animation: movingBg 35s ease infinite;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--text-color-light);
+  transition: background 0.5s, color 0.5s;
+}
+
+body.dark {
+  /* More dramatic dark background */
+  background: linear-gradient(270deg, #0f172a, #1e1b4b, #312e81, #4c1d95, #0f172a);
+  background-size: 400% 400%;
+  animation: movingBg 45s ease infinite; /* Slower animation for dark mode */
+  color: var(--text-color-dark);
+}
+
+body.dark h1, body.dark h2, body.dark h3 {
+  color: var(--text-color-dark);
+}
+
+body.dark p, body.dark li {
+  color: #cbd5e1;
+}
+
+body.dark a {
+  color: var(--web-color); 
+  transition: color 0.3s ease;
+}
+
+/* Layout Container */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+/* Header */
+.header-section {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.role-subtitle {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 0;
+    color: #475569;
+}
+
+body.dark .role-subtitle {
+    color: #94a3b8;
+}
+
+.role-availability {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: 9999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-left: 1rem;
+    box-shadow: 0 4px 10px rgba(79, 70, 229, 0.4);
+}
+
+/* Name Title Gradient */
+.name-title {
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 4rem); /* Responsive font size */
+  margin-bottom: 0.5rem;
+  background: -webkit-linear-gradient(45deg, var(--secondary-color), var(--ai-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.05em;
+}
+
+/* Contact Info */
+.contact-info {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.contact-info a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 600;
+  transition: color 0.3s ease, transform 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.contact-info a:hover {
+  color: var(--ai-color);
+  transform: translateY(-2px);
+}
+
+.contact-info span {
+    color: #94a3b8;
+}
+
+body.dark .contact-info a {
+    color: var(--web-color);
+}
+body.dark .contact-info a:hover {
+    color: var(--ai-color);
+}
+body.dark .contact-info span {
+    color: #475569;
+}
+
+/* Sections and Cards (Renamed div to card for clarity) */
+
+section h2 {
+    font-size: 2rem;
+    border-bottom: 3px solid var(--primary-color);
+    display: inline-block;
+    padding-bottom: 0.3rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+body.dark section h2 {
+    border-bottom: 3px solid var(--web-color);
+}
+
+.card {
+  background: var(--card-bg-light);
+  padding: 1.8rem 2.2rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.5s;
+  margin-bottom: 1.5rem;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 45px rgba(15, 23, 42, 0.18);
+}
+
+body.dark .card {
+    background: var(--card-bg-dark);
+    border: 1px solid var(--border-dark);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Project Specific Styling */
+.project-card {
+    margin-bottom: 2rem;
+    border-left: 5px solid var(--ai-color); /* Highlight projects */
+}
+body.dark .project-card {
+    border-left: 5px solid var(--web-color);
+}
+
+.project-card h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+body.dark .project-card h3 {
+    color: var(--web-color);
+}
+
+.project-tech {
+    margin-top: 1rem;
+}
+
+
+/* Skill Badge */
+
+.skill-badge {
+  /* Base styles */
+  background: #eef2ff;
+  border: 1px solid var(--primary-color);
+  color: #312e81;
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  transition: all 0.3s;
+  display: inline-block;
+  margin-bottom: 0.6rem;
+  margin-right: 0.4rem;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.12);
+  cursor: default;
+}
+
+/* AI/ML Specialization Badge */
+.skill-badge.skill-primary {
+    background: #fdf2f8; /* Very light pink */
+    border-color: var(--ai-color);
+    color: #9d174d; /* Darker pink for text */
+}
+
+/* Web Development Specialization Badge */
+.skill-badge.skill-secondary {
+    background: #e0f7fa; /* Very light cyan */
+    border-color: var(--web-color);
+    color: #0891b2; /* Darker cyan for text */
+}
+
+.skill-badge:hover {
+  background: var(--primary-color);
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.03); /* More pronounced hover */
+  box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
+}
+
+.skill-badge.skill-primary:hover {
+    background: var(--ai-color);
+    box-shadow: 0 6px 16px rgba(236, 72, 153, 0.45);
+}
+
+.skill-badge.skill-secondary:hover {
+    background: var(--web-color);
+    box-shadow: 0 6px 16px rgba(56, 189, 248, 0.45);
+}
+
+/* Dark Mode Badge Styles */
+body.dark .skill-badge {
+    background: #1e1b4b; /* Dark background */
+    border-color: #4c1d95;
+    color: #e0e7ff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+body.dark .skill-badge.skill-primary {
+    background: #4c1d95;
+    border-color: var(--ai-color);
+    color: var(--ai-color);
+}
+body.dark .skill-badge.skill-secondary {
+    background: #1e3a8a;
+    border-color: var(--web-color);
+    color: var(--web-color);
+}
+body.dark .skill-badge:hover {
+    background: var(--primary-color);
+}
+
+
+/* Creative Floating Element */
+.floating-element {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: var(--card-bg-light);
+    border: 1px solid var(--border-light);
+    color: var(--text-color-light);
+    padding: 0.6rem 0.8rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+    transition: background 0.5s, border-color 0.5s, color 0.5s;
+}
+
+body.dark .theme-toggle {
+    background: var(--card-bg-dark);
+    border: 1px solid var(--border-dark);
+    color: var(--text-color-dark);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Footer Styling */
+footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 1rem 0;
+}
+
+.footer-text {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+body.dark .footer-text {
+    color: #94a3b8;
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+    .name-title {
+        font-size: 2.5rem;
+    }
+    .contact-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .contact-info span {
+        display: none; /* Hide separators on small screens */
+    }
+    .card {
+        padding: 1.5rem;
+    }
+    .role-availability {
+        display: block;
+        margin: 0.5rem auto 0;
+        width: fit-content;
+    }
+}
